@@ -1,0 +1,653 @@
+//PATTERN -1
+Input: 5
+
+Output:
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+
+Code->
+class Solution {
+    void printSquare(int n) {
+    for(int i=n-1;i>=0;i--){
+        for(int j=n-1;j>=0;j--){
+            System.out.print("* ");
+        }
+        System.out.println();
+    }
+    }
+}
+
+
+//PATTERN-2
+Input: 5
+
+Output:
+* 
+* * 
+* * * 
+* * * * 
+* * * * *
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=0;i<=n-1;i++){
+            for(int j=0;j<=i;j++){
+                System.out.print("* ");
+            }
+        System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-3
+Input: 5
+
+Output:
+1
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++) {
+            System.out.print(j+" ");
+        }
+            System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-4
+Input: 5
+
+Output:
+1
+2 2 
+3 3 3 
+4 4 4 4 
+5 5 5 5 5
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print(i+" ");
+            }System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-5
+Input: 5
+
+Output:
+* * * * *
+* * * * 
+* * * 
+* *  
+* 
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=n-1;i>=0;i--){
+            for(int j=i;j>=0;j--){
+                System.out.print("* ");
+            }
+                System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-6
+Input: 5
+
+Output:
+1 2 3 4 5
+1 2 3 4
+1 2 3 
+1 2  
+1 
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=n;i>0;i--){
+            for(int j=1;j<=i;j++){
+                System.out.print(j+" ");
+            }
+                System.out.println();
+        }
+    }
+}
+
+//PATTERN-7
+Input: 5
+
+Output:
+
+    *
+   ***  
+  *****
+ *******
+*********
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+          for(int i=1;i<=n;i++){
+            for(int j=1;j<=n-i;j++){
+                System.out.print(" ");
+            }
+
+            for(int j=1;j<=i;j++){
+                System.out.print("*");
+            }
+            
+            for(int j=1;j<i;j++){
+                System.out.print("*");
+            }  
+            System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-8
+Input: 5
+
+Output:
+
+*********
+ *******
+  *****
+   ***
+    *
+    
+class Solution {
+    void printTriangle(int n) {
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<i;j++){
+              System.out.print(" ");
+            }
+            for(int k=i;k<=n;k++){
+                System.out.print("*");
+            }
+             for(int k=i;k<n;k++){
+                System.out.print("*");
+            }
+           System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-9
+For Input: 
+5
+Your Output: 
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+    
+Code->
+class Solution {
+    void printDiamond(int n) {
+           for(int i=1;i<=n;i++){
+            for(int j=1;j<=n-i;j++){
+                System.out.print(" ");
+            }
+            for(int j=1;j<=i;j++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        
+      for(int i=1;i<=n;i++){
+            for(int j=1;j<i;j++){
+              System.out.print(" ");
+            }
+            for(int k=i;k<=n;k++){
+                System.out.print("* ");
+            }
+             System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-10
+Input: 5
+
+Output:
+* 
+* * 
+* * * 
+* * * * 
+* * * * *
+* * * *
+* * *
+* *
+*
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for (int i= 0; i<=n-1 ; i++)
+        {
+            for (int j=0; j<=i; j++) {
+                System.out.print("*"+ " "); 
+            } System.out.println(); 
+        }
+        
+    for (int k=n-1; k>0; k--)
+        {
+            for(int j=1; j <=k;j++)
+            {
+                System.out.print("*"+ " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+//PATTERN-11
+Input: 5
+
+Output:
+1 
+0 1 
+1 0 1
+0 1 0 1 
+1 0 1 0 1
+
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=1;i<=n;i++){
+            if(i%2!=0){
+                for(int j=1;j<=i;j++){
+                if(j%2==0){
+                    System.out.print("0 ");
+                }else{
+                 System.out.print("1 ");
+               }
+              }
+            }
+            else{
+              for(int j=1;j<=i;j++){
+                if(j%2==0){
+                    System.out.print("1 ");
+                }else
+                 System.out.print("0 ");
+               }  
+            }    
+        System.out.println();
+        }
+    }
+}
+
+//PATTERN-12
+Input: 5
+
+Output:
+1                 1
+1 2             2 1
+1 2 3         3 2 1
+1 2 3 4     4 3 2 1
+1 2 3 4 5 5 4 3 2 1
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=i;j++){
+            System.out.print(j+" ");
+        }
+        for(int k=i*2;k<(n)*2;k=k+2){
+            System.out.print("    ");
+        }
+        for (int j = i; j >= 1; j--) {
+        System.out.print(j + " ");
+      }
+      System.out.println();
+     }
+    }
+}
+
+//PATTERN-13
+
+Input: 5
+
+Output:
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15
+
+Code->
+class Solution {
+
+    void printTriangle(int n) {int a=1;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<=i;j++){
+                System.out.print(a+" ");
+                a++;
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-14
+Input: 5
+
+Output:
+A
+AB
+ABC
+ABCD
+ABCDE
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        int a=65;
+        for(int i=0;i<n;i++){
+        for(int j=0;j<=i;j++){
+            System.out.print((char)(a+j));
+        }
+        System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-15
+Input: 5
+
+Output:
+ABCDE
+ABCD
+ABC
+AB
+A
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        int a=65;
+        for(int i=n-1;i>=0;i--){
+            for(int j=0;j<=i;j++){
+                System.out.print((char)(a+j));
+            }
+        System.out.println();
+            
+        }
+    }
+}
+
+
+//PATTERN-16
+Input: 5
+
+Output:
+A
+BB
+CCC
+DDDD
+EEEEE
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        int a=65;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<=i;j++){
+                System.out.print((char)(a+i));
+            }System.out.println();
+        }
+    }
+}
+
+//PATTERN-17
+Input: 4
+
+Output:
+   A
+  ABA
+ ABCBA
+ABCDCBA
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        int a=65;
+        for(int i=0;i<n;i++){
+            for(int j=n-1;j>i;j--){
+                System.out.print(" ");
+            }
+            for(int j=0;j<=i;j++)
+            {
+            System.out.print((char)(a+j));
+            }
+            for(int j=i-1;j>=0;j--)
+             {
+            System.out.print((char)(a+j));
+              }
+        System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-18
+Input: 5
+
+Output:
+E
+E D
+E D C
+E D C B
+E D C B A
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        int a=65;
+        for(int i=n-1;i>=0;i--){
+            for(int j=n-1;j>=i;j--){
+                System.out.print((char)(a+j)+" ");
+            }System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-19
+Input: 5
+
+Output:
+**********
+****  ****
+***    ***
+**      **
+*        *
+*        *
+**      **
+***    ***
+****  ****
+**********
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+        for(int i=n;i>=1;i-- ){
+            for(int j=i;j>=1;j--){
+               System.out.print("*");
+            }
+            for(int k=n*2;k>i*2;k=k-2){
+               System.out.print("  ");
+            }
+            for(int j=i;j>=1;j--){
+                System.out.print("*");
+            } 
+            System.out.println();
+        }
+        
+     for(int i=1;i<=n;i++)
+        {
+        for(int j=1;j<=i;j++){
+            System.out.print("*");
+        }
+        for(int k=i*2;k<(n)*2;k=k+2){
+            System.out.print("  ");
+        }
+        for (int j = i; j >= 1; j--) {
+          System.out.print("*");
+      }
+      System.out.println();
+    }   
+   }
+}
+
+
+//PATTERN-20
+Input: 5
+
+Output:
+*        *
+**      **
+***    ***
+****  ****
+**********
+****  ****
+***    ***
+**      **
+*        *
+
+Code->
+class Solution {
+    void printTriangle(int n) {
+  for(int i=1;i<=n;i++)
+    {
+       for(int j=1;j<=i;j++){
+            System.out.print("*");
+        }
+        for(int k=i*2;k<(n)*2;k=k+2){
+            System.out.print("  ");
+        }
+        for (int j = i; j >= 1; j--) {
+        System.out.print("*");
+      }
+      System.out.println();
+    }      
+    
+    for(int i=n-1;i>=1;i-- ){
+            for(int j=i;j>=1;j--){
+                System.out.print("*");
+            }
+            for(int k=n*2;k>i*2;k=k-2){
+            System.out.print("  ");
+            }
+            for(int j=i;j>=1;j--){
+                System.out.print("*");
+            } 
+            System.out.println();
+        }
+    }
+}
+
+
+//PATTERN-21
+Input: 4
+
+Output:
+****
+*  *
+*  *
+****
+
+
+Code->
+class Solution {
+ void printSquare(int n) {
+     for(int i=0;i<n;i++){
+         for(int j=n-1;j>=0;j--){
+             if(i==0||j==0||j==n-1||i==n-1)
+                 {
+                     System.out.print("*");
+                }else{
+                    System.out.print(" ");
+                } 
+          }        
+         System.out.println();
+      }   
+    }
+}
+
+//PATTERN-22
+Input: 4
+
+Output:
+4 4 4 4 4 4 4
+4 3 3 3 3 3 4
+4 3 2 2 2 3 4
+4 3 2 1 2 3 4
+4 3 2 2 2 3 4
+4 3 3 3 3 3 4
+4 4 4 4 4 4 4
+
+class Solution {
+    void printSquare(int n) {
+        int start,end,size;
+        size = n*2 - 1;
+        start=0;
+        end=size - 1;
+        int arr[][]=new int[size][size];
+
+    while (n != 0) {
+        for (int i = start; i <= end ; i++ ) {
+            for (int j = start; j <= end; j++) {
+                if ((i==start) || (i==end) || (j==start) || (j==end)) {
+                    arr[i][j]=n;
+                 }
+            }
+        }
+    start++;
+    end--;
+    n--;
+    }
+  
+   for (int i = 0; i <size; i++ ) {
+        for (int j = 0; j <size; j++) {
+            System.out.print(arr[i][j]+" ");
+         }
+        System.out.println();
+       }
+    }
+}
