@@ -1,0 +1,75 @@
+Problem -1->
+Frequencies of Limited Range Array Elements
+Given an array A[] of N positive integers which can contain integers from 1 to P where elements can be repeated or can be absent from the array.
+Your task is to count the frequency of all elements from 1 to N.
+
+Task-You don't need to read input or print anything. Complete the function frequencycount() that takes the array and n as input parameters
+and modify the array itself in place to denote the frequency count of each element from 1 to N.
+
+Example 1:
+Input:
+N = 5
+arr[] = {2, 3, 2, 3, 5}
+P = 5
+Output:
+0 2 2 0 1
+Explanation: 
+Counting frequencies of each array element
+We have:
+1 occurring 0 times.
+2 occurring 2 times.
+3 occurring 2 times.
+4 occurring 0 times.
+5 occurring 1 time.
+
+Code->
+class Solution{
+    public static void frequencyCount(int arr[], int N, int P)
+    {
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int i=0;i<N;i++){
+            hm.put(arr[i],hm.getOrDefault(arr[i],0)+1);
+        }
+        for(int i=0;i<N;i++){
+            if(hm.containsKey(i+1)){
+                arr[i]=hm.get(i+1);
+            }else
+            arr[i]=0;
+        }
+        
+    }
+}
+
+
+//Problem-2->
+Find the highest/lowest frequency element
+
+Code->
+class Solution{
+    public static int[] frequencyCount(int arr[], int N)
+    {
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int i=0;i<N;i++){
+            hm.put(arr[i],hm.getOrDefault(arr[i],0)+1);
+        }
+        int max=Integer.MIN_VALUE;
+        int maxele=0,minele=0;
+        int min=Integer.MAX_VALUE;
+        for (Map.Entry<Integer,Integer> x : mp.entrySet()){
+       {
+         if(x.getValue()>max){
+           max=x.getValue();
+           maxele=x.getKey();
+          }
+         if(min< x.getValue()){
+            min=Math.min( min,x.getValue());
+            minele=x.getKey();
+            }
+        }
+       
+        int []ans=new int[2];
+        ans[0]=maxele;
+        ans[1]=minele;
+        return ans;
+    }
+}
