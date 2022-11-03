@@ -1,0 +1,245 @@
+Problem -1
+Selection Sort->
+
+Input:
+N = 5
+arr[] = {4, 1, 3, 9, 7}
+Output:
+1 3 4 7 9
+Explanation:
+Maintain sorted (in bold) and unsorted subarrays.
+Select 1. Array becomes 1 4 3 9 7.
+Select 3. Array becomes 1 3 4 9 7.
+Select 4. Array becomes 1 3 4 9 7.
+Select 7. Array becomes 1 3 4 7 9.
+Select 9. Array becomes 1 3 4 7 9.
+
+Code->
+class Solution
+{
+	void selectionSort(int arr[], int n)
+	{
+	    //code here
+	    for(int i=0;i<n-1;i++){
+	      int min_index=i  ;
+	      for(int j=i+1;j<n;j++)  //finding the minimum from i to end of array
+	      {
+	        if(arr[j]<arr[min_index]){
+	        min_index=j;
+	        }
+	      }
+	    int temp=arr[min_index];  //swap the minimum ele with i(pivot) element ..finding the right pos. thus finding pos for minimum ele first
+	    arr[min_index]=arr[i];
+	    arr[i]=temp;
+
+	    }
+	}
+}
+
+
+Problem-2
+Bubble Sort
+
+Input: 
+N = 5
+arr[] = {4, 1, 3, 9, 7}
+Output: 
+1 3 4 7 9
+it places the largest element at its right position first
+
+Code->
+class Solution
+{
+    //Function to sort the array using bubble sort algorithm.
+	public static void bubbleSort(int arr[], int n)
+    {
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-i-1;j++){   //also works for n-1
+                if(arr[j]>arr[j+1]){ //finding the max in whole array and setting it to pos.
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+    }
+}
+
+
+Problem-3
+Insertion Sort->
+In it we pick an element from unsorted part of the array and insert into the sorted part of the array.
+
+Code->
+class Solution
+{ public void insertionSort(int a[], int n)
+  {
+    int i,j;
+    for( i=1;i<n;i++){ //we start from second element as a single ele is sortes so we see that till 0-1 index array is sorted andd 1-n..not sorted at begining
+          int temp=a[i]; //the ele we want to insert in the sorted part of the array
+          for(j=i-1;j>=0 && a[j]>temp ;j--){
+              a[j+1]=a[j];//we keep shifting elements till we find any ele less than temp.
+          }
+          a[j+1]=temp;//we put the ele in its right position j+1 as it is bigger than ele at a[j]
+      }
+  }
+}
+
+
+Problem 4->
+Merge Sort
+In this we divide the array till l<r ...that is till 2 elements in the array then we stop only then to sort it ...we send the array with low,mid,high..
+then other 2 elements array is sorted ..and then they are megerd toghrer and the steps keep going on ill we have the whole merged array back...
+class Solution
+{
+   void mergeSort(int arr[], int l, int r)
+    {
+        //code here
+        if(l<r){
+            int mid=(l+r)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            merge(arr,l,mid,r);
+        }
+    }
+    void merge(int a[], int l, int mid, int r)
+    {
+         // Your code here
+         int b[]=new int[r-l+1];
+         int i=l,j=mid+1,k=0;
+         while(i<=mid && j<=r){
+             if(a[i]<=a[j]){
+              b[k]=a[i];
+              i++;
+             }else{
+                 b[k]=a[j];
+                 j++;
+             }
+             k++;
+         }
+         if(i<=mid){
+         while(i<=mid){
+           b[k]=a[i];
+              i++;
+              k++;  
+         }
+         }else if(j<=r){
+         while(j<=r){
+              b[k]=a[j];
+                 j++;
+                 k++;
+         }
+         }
+         //settings elem to b to a
+        k=0;
+          for (int f = l ; f <= r; f++) {
+            a[f] = b[k] ;
+            k++;
+        }
+    }
+ 
+}
+
+
+Problem 5->
+Recusive Bubble Sort
+
+Code->
+class Solution
+{
+	public static void bubbleSort(int arr[], int n)
+    { 
+   if(n==0||n==1)  //base condition
+   return;
+   //since we are sorting from back by placing the larget ele first we can 
+   //check till n-1 only as we know after that all the elements till the array.length are sorted
+   for(int i=0;i<n-1;i++){ //in first itter..lasrgest ele placed at its right position 
+       if(arr[i]>arr[i+1]){
+           swap(arr,i,i+1);
+       }
+   }
+   bubbleSort(arr,n-1); //then we see for second largest and place it at its right position
+    }
+    
+    public static void swap(int a[], int i, int j){
+        int tem=a[i];
+        a[i]=a[j];
+        a[j]=tem;
+    }
+}
+
+
+Problem-6->
+Recursive Insertion Sort->
+
+Code->
+class Solution
+{
+       //Function to sort the array using insertion sort algorithm.
+       //At every stage we have a sorted part and an unsorted part we take an ele from the unsorted ..pos..i...and 
+       //try to put it in the right pos in the sorted part of the array
+  public void insertionSort(int a[], int n)
+  {
+      if(n<=1){//base condition
+      return;
+      }
+      //Now we know that single ele is sorted..so we need to have move ele...so we go back-> 5..4..3..2..1..
+      //so now after it hits base condition it will fo in 2..3..4..5
+  insertionSort(a,n-1);
+  int last=a[n-1]; //temporary variable so ele isn't lost
+  int j=n-2;
+  while(j>=0 && a[j]>last){
+      a[j+1]=a[j];
+      j--;
+  }
+  a[j+1]=last;
+}
+}
+
+
+Problem -7->
+Quick Sort
+Code->
+
+class Solution
+{
+    //Function to sort an array using quick sort algorithm.
+    static void quickSort(int arr[], int low, int high)
+    {
+      if(low<high){
+          int pivot=partition(arr,low,high);
+          quickSort(arr,low,pivot-1); //using the recursion each element finds its right position.....and is set at that position in the smaller version of the given
+          quickSort(arr,pivot+1,high); //array which would be correct pos. for bigger array too bec... if it is on left of array it is bec. it was smaller then pivot ele.
+                                        //....and it will find its right pos. in the left of the pivot only..similarly for right ele of pivot too..
+      }
+           }
+           
+    static int partition(int arr[], int low, int high)
+    {  
+              //take ele from start as pivot..
+              //find the ele greater than it .. from beginning(i) and less than it(j)..from back and swap them....
+              //then when j becomes graeter equal than(>=) i than we swap the pivot with the less ele(j)..
+              //this was the first itteration we go and call the quick sort for the left side of it and the right side of it
+
+        int pivot=arr[low];
+        int i=low,j=high;     //both the pointers..one starts at beg..other at last
+        while(i<j){
+        while(i<=arr.length-1 &&arr[i]<=pivot ){    //keep going till smaller to find the ele that isn't,ie,larger than pivot
+            i++;
+        }
+        while(j>=0 && arr[j]>pivot ){     //keep going till we have larger ,if found smaller or equal stop
+            j--;
+        }
+        if(i<j){
+            int temp=arr[j];
+            arr[j]=arr[i];
+            arr[i]=temp;
+        }
+        }
+                     //Now we swap the pivot(a[low]) with the j element...
+            int temp=arr[low];
+            arr[low]=arr[j];
+            arr[j]=temp;
+            return j;     //returns the position pivot is now...
+    } 
+}
