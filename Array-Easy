@@ -1,0 +1,558 @@
+//Problem 1
+1-Largest Element in an Array
+
+Code->
+class Compute {
+    public int largest(int arr[], int n)
+    {
+       int a=arr[0];
+       for(int i=0;i<n;i++){
+            a=Math.max(a,arr[i]);
+        }
+        return a;
+    }
+}
+
+//Problem 2
+2->Second Largest Element in an Array
+
+Code->
+class Solution {
+    int print2largest(int arr[], int n) {
+        // code here
+        int a=arr[0],b=-1;
+       for(int i=0;i<n;i++){
+            a=Math.max(a,arr[i]);
+        }
+     for(int i=0;i<n;i++){
+         if(arr[i]!=a){
+         b=Math.max(b,arr[i]);
+         }
+     }
+     return b;
+    }
+}
+
+//Problem-3
+check if the array is Sorted
+Given an array arr[] of size N, check if it is sorted in non-decreasing order or not. 
+
+Example 1:
+Input:
+N = 5
+arr[] = {10, 20, 30, 40, 50}
+Output: 1
+Explanation: The given array is sorted.
+
+Code->
+class Solution {
+    boolean arraySortedOrNot(int[] arr, int n) {
+       int c=0;
+        for(int i=0;i<n-1;i++){
+            if(arr[i]<=arr[i+1])
+            c++;
+        }
+        return (c==arr.length-1);
+ 
+    }
+}
+
+//Problem-4
+Check if Array Is Sorted and Rotated
+Given an array nums, return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero).
+Otherwise, return false.There may be duplicates in the original array.
+Note: An array A rotated by x positions results in an array B of the same length such that A[i] == B[(i+x) % A.length], where % is the modulo operation.
+
+Example 1:
+Input: nums = [3,4,5,1,2]
+Output: true
+Explanation: [1,2,3,4,5] is the original sorted array.
+You can rotate the array by x = 3 positions to begin on the the element of value 3: [3,4,5,1,2].
+ 
+ Example 2:
+Input: nums = [2,1,3,4]
+Output: false
+Explanation: There is no sorted array once rotated that can make nums.
+
+Code->
+class Solution {
+    public boolean check(int[] a) {
+  int c=0;
+		for(int i=0;i<a.length-1;i++){ 
+			if(a[i]>a[i+1])  //it can happen once...3,4,5,1,2...stating may be in b/w
+                c++;
+		}
+
+     if(c>1 ||(c==1 && a[0]<a[a.length-1]))
+		return false;
+        return true;
+    }
+}
+
+
+//Problem-5
+Remove Duplicates from Sorted Array
+Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. 
+The relative order of the elements should be kept the same.
+
+Example 1:
+Input: nums = [1,1,2]
+Output: 2, nums = [1,2,_]
+Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+Code->
+//Two pointers soltion..
+class Solution {
+    public int removeDuplicates(int[] nums) {
+    int i=0;
+        for(int j=1;j<nums.length;j++){
+        if(nums[i]!=nums[j]){
+            i++;
+            nums[i]=nums[j];
+        }
+    }
+        return i+1;
+    }
+}
+
+//Sliding Window solution...
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int count=1,j=1;
+        for(int i=0;i<nums.length-1;i++){
+        while(j<nums.length && nums[j]==nums[i]){
+            j++;
+        }
+        while(j<nums.length && nums[j]!=nums[i]){
+           nums[count]=nums[j];
+            count++;
+            i=j;
+            j++;
+        }
+        }
+        return count;
+        
+    }
+}
+
+
+//Problem-6
+Left Rotate the Array by One
+Problem Statement: Given an array of N integers, left rotate the array by one place.
+Example 1:
+Input: N = 5, array[] = {1,2,3,4,5}
+Output: 2,3,4,5,1
+Explanation: 
+Since all the elements in array will be shifted toward left by one so ‘2’ will now become the 
+first index and and ‘1’ which was present at first index will be shifted at last.
+Code->
+class TUF{
+static void solve(int arr[], int n) {
+  int temp = arr[0]; // storing the first element of array in a variable
+  for (int i = 0; i < n - 1; i++) {
+    arr[i] = arr[i + 1];
+  }
+  arr[n - 1] = temp; // assigned the value of variable at the last index
+  for (int i = 0; i < n; i++) {
+    System.out.print(arr[i]+" ");
+  }
+  
+//Problem-7
+Move Zeroes
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+Note that you must do this in-place without making a copy of the array.
+ 
+Example 1:
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+Code->
+//Counting the no. of zeroes and putting them at last
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int c=0,j=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]!=0){
+                nums[j]=nums[i];
+                j++;
+            }else{
+                c++;
+            }
+        }
+        for(int i=nums.length-c;i<nums.length;i++){
+            nums[i]=0;
+        }
+    }
+}
+
+//Snowball solution
+class Solution {
+     public void moveZeroes(int[] nums) {
+        int snowBallSize = 0; 
+        for (int i=0;i<nums.length;i++){
+	        if (nums[i]==0){
+                snowBallSize++; 
+            }
+          else if (snowBallSize > 0){//we swap the zero with the elements as we encounter them
+	            int t = nums[i];
+	            nums[i]=0;
+	            nums[i-snowBallSize]=t;
+            }
+        }
+    }
+}
+
+//Problem -8
+Linear Search
+Searching an element in a sorted array
+Given an array arr[] sorted in ascending order of size N and an integer K. Check if K is present in the array or not.
+
+Example 1:
+Input:
+N = 5, K = 6
+arr[] = {1,2,3,4,6}
+Output: 1
+Exlpanation: Since, 6 is present in the array at index 4 (0-based indexing), output is 1.
+
+Code->
+class Solution{
+    static int searchInSorted(int arr[], int N, int K)
+    {
+        for(int i=0;i<N;i++){
+            if(arr[i]==K)
+            return 1;
+        }
+     return -1;   
+    }
+}
+
+//Problem-9
+Union and Intersection of Two Sorted Arrays
+Union of two arrays can be defined as the common and distinct elements in the two arrays.
+Given two sorted arrays of size n and m respectively, find their union and Intersection.
+
+Example 1:
+Input: 
+n = 5, arr1[] = {1, 2, 3, 4, 5}  
+m = 3, arr2 [] = {1, 2, 3}
+Output:Union- 1 2 3 4 5
+Intersection-1 2 3
+Explanation: Distinct elements including  both the arrays are: 1 2 3 4 5.
+
+Code->
+//Union
+class Solution
+{
+    //Function to return a list containing the union of the two arrays.
+    public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+        int i = 0, j = 0; // pointers
+  ArrayList<Integer > Union=new ArrayList<>(); // Uninon vector
+  while (i < n && j < m) {
+    if (arr1[i] <= arr2[j]) // Case 1 and 2
+    {
+      if (Union.size() == 0 || Union.get(Union.size()-1) != arr1[i])
+        Union.add(arr1[i]);
+      i++;
+    } else // case 3
+    {
+      if (Union.size() == 0 || Union.get(Union.size()-1) != arr2[j])
+        Union.add(arr2[j]);
+      j++;
+    }
+  }
+  while (i < n) // IF any element left in arr1
+  {
+    if (Union.get(Union.size()-1) != arr1[i])
+      Union.add(arr1[i]);
+    i++;
+  }
+  while (j < m) // If any elements left in arr2
+  {
+    if (Union.get(Union.size()-1) != arr2[j])
+      Union.add(arr2[j]);
+    j++;
+  }
+  return Union;
+    }
+}
+
+// Intersection
+class TUF{
+public static void main(String args[]) {
+  int A[]={1,2,3,3,4,5,6,7};
+  int B[]= {3,3,4,4,5,8};
+
+  ArrayList<Integer> ans=new ArrayList<>();
+
+  int i = 0, j = 0; // to traverse the arrays
+
+  while (i < A.length && j < B.length) {
+    if (A[i] < B[j]) { //if current element in i is smaller
+      i++;
+    } else if (B[j] < A[i]) {
+      j++;
+    } else {
+      ans.add(A[i]); //both elements are equal
+      i++;
+      j++;
+    }
+  }
+  System.out.print("The elements are: ");
+  for (i = 0; i < ans.size(); i++) {
+    System.out.print(ans.get(i)+" ");
+  }
+}
+}
+
+
+//Problem-10
+Missing Number
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+Example 1:
+Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+
+Code->
+class Solution {
+    public int missingNumber(int[] nums) {
+     int i=0,ans=0;
+      for(i=0;i<nums.length;i++){
+          ans=ans^i^nums[i];
+      }  
+     ans=ans^i;
+      return ans; 
+    }
+}
+
+
+//Problem-11
+ Max Consecutive Ones
+Given a binary array nums, return the maximum number of consecutive 1's in the array.
+Example 1:
+
+Input: nums = [1,1,0,1,1,1]
+Output: 3
+Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
+
+Code->
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+      int max=0,mmax=0;
+      for(int i=0;i<nums.length;i++){
+          if(nums[i]==0){
+              max=0;
+          }else{
+            max++;
+          }
+            mmax=Math.max(mmax,max);
+      } 
+      return mmax; 
+    }
+}
+
+
+//Problem-12
+560. Subarray Sum Equals K
+Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+Example 1:
+Input: nums = [1,1,1], k = 2
+Output: 2
+
+Code->
+//We add that value in our prefix map if sum-k already exists in our prefix map...and We add that vaue to our currentsum....
+//Then we put that value in our prefix map with the map.get()+1...like for 1,-1,1,1,1...After some time we will get sum=3 ,say k=3....
+//then we wll have 3-3=0..and we would have 0 in the map..and the value of that is added to the result as we could have got 0 before 
+//in the array in that many ways(say 2)..so we could have got to 3 in 2 ways....and we add in map (3,1)...ie we get 1 way to get 3..continue
+public class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count = 0, sum = 0;
+        HashMap < Integer, Integer > map = new HashMap < > ();
+        map.put(0, 1);
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (map.containsKey(sum - k))
+                count += map.get(sum - k);
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return count;
+    }
+}
+
+
+//Problem-13
+Longest Sub-Array with Sum K
+Given an array containing N integers and an integer K., Your task is to find the length of the longest Sub-Array with the sum of the elements
+equal to the given value K.
+
+Example 1:
+Input :
+A[] = {10, 5, 2, 7, 1, 9}
+K = 15
+Output : 4
+Explanation:
+The sub-array is {5, 2, 7, 1}.
+
+Code->
+class Solution{
+    public static int lenOfLongSubarr (int arr[], int N, int k) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int sum=0,maxlen=0;
+        for(int i=0;i<arr.length;i++){
+            sum=sum+arr[i];
+            if(!map.containsKey(sum)){
+                map.put(sum,i);
+            }
+            if(sum==k){
+                maxlen=i+1;
+            }
+            if(map.containsKey(sum-k)){
+                 if (maxlen < (i - map.get(sum - k)))
+                          maxlen = i - map.get(sum - k);
+                  }
+            }
+            return maxlen;
+        }
+    }
+    
+//Sliding Window Approach
+//doesn't work for the negative numbers
+class Solution{
+    public static int lenOfLongSubarr (int nums[], int n, int k) {
+  int start = 0, end = -1, sum = 0, maxLength = 0;
+  while (start < n) {
+    while ((end + 1 < n) && (sum + arr[end + 1] <= k))
+      sum += arr[++end];
+
+    if (sum == k)
+      maxLength = Math.max(maxLength, (end - start + 1));
+
+    sum -= arr[start];
+    start++;
+  }
+  return maxLength;
+    }
+    }
+    
+    
+ Problem-14->
+ 136. Single Number
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+Example 1:
+Input: nums = [2,2,1]
+Output: 1
+
+Code->
+class Solution {
+    public int singleNumber(int[] nums) {
+      int ans=nums[0];
+       for(int i=1;i<nums.length;i++){
+           ans=ans^nums[i];
+       } 
+       return ans;
+    }
+}
+
+//Problem-15
+Search in a 2d matrix
+Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix. This matrix has the following properties:
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row.
+
+Code->
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+         int lo = 0;
+        if(matrix.length == 0) return false;
+        int n = matrix.length; 
+        int m = matrix[0].length; 
+        int hi = (n * m) - 1;
+        
+        while(lo <= hi) {
+            int mid = (lo + (hi - lo) / 2);
+            if(matrix[mid/m][mid % m] == target) {
+                return true;
+            }
+            if(matrix[mid/m][mid % m] < target) {
+                lo = mid + 1;
+            }
+            else {
+                hi = mid - 1;
+            }
+        }
+        return false;
+    }
+}
+
+//Problem -16
+Row with max 1s
+Given a boolean 2D array of n x m dimensions where each row is sorted. Find the 0-based index of the first row that has the maximum number of 1's.
+
+Example 1:
+Input: 
+N = 4 , M = 4
+Arr[][] = {{0, 1, 1, 1},
+           {0, 0, 1, 1},
+           {1, 1, 1, 1},
+           {0, 0, 0, 0}}
+Output: 2
+Explanation: Row 2 contains 4 1's (0-based indexing).
+
+Code->
+//Using this way of serching...where we search each row from last ..if 1 found go more back in the same row....else 
+//we go to down if any of the down rows have 1 in it...,ie,they have more ones then the current row so we break out of that row to check down row
+class Solution {
+    int rowWithMax1s(int arr[][], int n, int m) {
+        // code here
+        int col=m-1,row=-1;
+        for(int i=0;i<n;i++){
+           for(int j=col;j>=0;j--){
+               if(arr[i][j]==1){
+                   col--;
+                   row=i;
+               }else{
+                   break;
+               }
+           }
+        }
+        return row;
+    }
+}
+
+//OR By Using Binary Serach
+class Solution {
+    int rowWithMax1s(int arr[][], int n, int m) {
+        // code here
+        int max=Integer.MAX_VALUE,ans=-1;
+        for(int i=0;i<n;i++){
+            int index=bs(arr[i],0,m-1);
+            if(index != -1 && index<max ){
+                max=index;
+                ans=i;
+            }
+        }
+        return ans;
+    }
+  int bs(int arr[],int low,int high){
+      if (high>=low){
+            int mid=(low+high)/2;
+            if((mid==0||arr[mid-1]==0)&&(arr[mid]==1)){
+            return mid;
+            }
+            else if(arr[mid]==0){
+             return   bs(arr,(mid+1),high);
+            }else{
+                return bs(arr,low,(mid-1));
+            }
+        }
+        return -1;
+    }
+}
